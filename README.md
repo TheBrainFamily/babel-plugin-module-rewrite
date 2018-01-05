@@ -1,8 +1,6 @@
 # babel-plugin-module-rewrite
-[![Version](https://img.shields.io/npm/v/babel-plugin-module-rewrite.svg)](https://www.npmjs.org/package/babel-plugin-module-rewrite)
-[![Build Status](https://travis-ci.org/liady/babel-plugin-module-rewrite.svg?branch=master)](https://travis-ci.org/liady/babel-plugin-module-rewrite)
 
-A [babel](http://babeljs.io) plugin to rewrite module imports (and `require`) using a custom function
+A [babel](http://babeljs.io) plugin to rewrite module imports (and `require`) using a custom function, with ability to setup root, to work nicely with mono repos
 
 ## Description
 
@@ -13,14 +11,19 @@ You can supply a replace function to dynamically replace module paths when Babel
 Install the plugin
 
 ```
-$ npm install --save-dev babel babel-plugin-module-rewrite
+$ npm install --save-dev babel babel-plugin-module-rewrite-with-root
 ```
 
 Specify the plugin in your `.babelrc` with the file that exports the replace function.
 ```json
 {
   "plugins": [
-    ["module-rewrite", { "replaceFunc": "./utils/replace-module-paths.js" }]
+    ["module-rewrite-with-root", 
+        { 
+            "replaceFunc": "./utils/replace-module-paths.js",
+            "optionalRoot": "server/"
+        }
+    ]
   ]
 }
 ```
