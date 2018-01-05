@@ -1,9 +1,18 @@
 import { resolve, dirname } from 'path';
 
-function getReplaceFunc({ replaceFunc, replaceHandlerName = 'default', resolveFrom = 'process.cwd()' } = {}) {
+function getReplaceFunc({ replaceFunc, replaceHandlerName = 'default', resolveFrom = 'process.cwd()', optionalRoot} = {}) {
     const absolutePath = resolve(eval(resolveFrom), replaceFunc);
-    const replaceContainer = require(absolutePath);
-    if(!replaceContainer){
+    let replaceContainer;
+    try {
+        replaceContainer = require(absolutePath);
+    } catch(e) {
+        if (optionalRoot) {
+            const newPath = resolve(eval(resolveFrom), optionalRoot, replaceFunc)
+            replaceContainer = require(resolve(absolutePath, newPath))
+        }
+    }
+
+    if (!replaceContainer) {
         throw new Error('Cannot find replace function file: ' + absolutePath);
     }
 

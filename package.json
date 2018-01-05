@@ -1,11 +1,11 @@
 {
-  "name": "babel-plugin-module-rewrite",
-  "version": "0.2.0",
+  "name": "babel-plugin-module-rewrite-with-root",
+  "version": "0.3.0",
   "main": "lib/index.js",
-  "description": "Babel plugin to dynamically rewrite the path in require() and ES6 import",
+  "description": "Babel plugin to dynamically rewrite the path in require() and ES6 import, with ability to setup root for monorepos",
   "repository": {
     "type": "git",
-    "url": "https://github.com/liady/babel-plugin-module-rewrite.git"
+    "url": "https://github.com/TheBrainFamily/babel-plugin-module-rewrite-with-root.git"
   },
   "author": {
     "name": "Liad Yosef"
@@ -33,6 +33,7 @@
   },
   "scripts": {
     "compile": "cross-env NODE_ENV=production babel src --out-dir lib",
+    "compile:watch": "npm run compile -- --watch",
     "test": "cross-env NODE_ENV=test npm run test:suite",
     "test:suite": "mocha --compilers js:babel-register",
     "test:watch": "npm run test:suite -- -w",
