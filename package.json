@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-module-rewrite-with-root",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "main": "lib/index.js",
   "description": "Babel plugin to dynamically rewrite the path in require() and ES6 import, with ability to setup root for monorepos",
   "repository": {
